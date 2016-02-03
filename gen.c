@@ -21,9 +21,9 @@ void writeScenario(FILE* f, char* password){
 
 void genDictionnary(FILE* f, char*(*dictionnary)[scenarios], int* index, char* number[wordLength], int n) {
     if(n > 0) {
-        number[wordLength-n] = "$[A-Z]";
+        number[wordLength-n] = "?u";
         genDictionnary(f, dictionnary, index, number, n - 1);
-        number[wordLength-n] = "$[0-9]";
+        number[wordLength-n] = "?d";
         genDictionnary(f, dictionnary, index, number, n - 1);
     }
     else {
@@ -83,7 +83,7 @@ int main(){
   FILE* f = openFile();
   char* dictionnary[scenarios] = {""};
   int index = 0;
-  char *number[wordLength] = {"$[A-Z]"};
+  char *number[wordLength] = {"?u"};
   printf("%s", dictionnary[0]);
   for(int i=0;i<scenarios;i++){dictionnary[i]="";}
   genDictionnary(f, &dictionnary, &index, number, wordLength);
